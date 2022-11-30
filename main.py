@@ -45,7 +45,7 @@ def train_DTI(model, config, helper, data, repeat_nums, fold_nums, feats, P_d, P
     return all_loss
 
 
-def valid_model(onfig, helper, model, data, repeat_nums, fold_nums, feats, P_d, P_p):
+def valid_model(config, helper, model, data, repeat_nums, fold_nums, feats, P_d, P_p):
     model.eval()
     print("evaluate the model")
 
@@ -102,7 +102,6 @@ def evaluation_model(config, helper, model, data, repeat_nums, fold_nums,feats, 
 
     with torch.no_grad():
         for i, (dg, pt, tag, dg_index, pt_index) in enumerate(data.get_test_batch(repeat_nums, fold_nums, config.batch_size)):
-            # print(dg_index)
             if(len(dg_index) != 1):
                 pred = model.get_tag(config,  dg, pt, dg_index, pt_index, feats, P_d, P_p)
                 try:
